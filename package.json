@@ -1,0 +1,23 @@
+{
+  "name": "project-plant-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.9",
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "joi": "^17.9.1",
+    "knex": "^2.4.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.10.0",
+    "uuid": "^9.0.0"
+  }
+}
