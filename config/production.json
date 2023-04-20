@@ -1,3 +1,18 @@
 {
-    "name": "Automatic Plant Shop - Production"
+    "name": "Automatic Plant Shop - Production",
+    "production": {
+        "client": "postgresql",
+        "connection": {
+            "database": "project_plant_shop",
+            "user": "project_plant_shop_user",
+            "password": "SW40St5afFYm8FAN2EsJUzHhbulyJTX4"
+        },
+        "pool": {
+            "min": 2,
+            "max": 10
+        },
+        "migrations": {
+            "tableName": "knex_migrations"
+        }
+    }
 }
