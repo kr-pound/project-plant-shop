@@ -1,3 +1,6 @@
+// Load environment variables from .env file
+require('dotenv').config();
+
 // Express Module
 const express = require('express');
 const app = express();
@@ -26,7 +29,7 @@ app.use('/public', express.static('public'));
 app.use(cors());
 
 // Using `3rd-party Middleware`
-if (app.get('env') === 'development') {
+if (process.env.NODE_ENV === 'development') {
     app.use(morgan('tiny'));
 
     // Debugging
