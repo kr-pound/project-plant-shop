@@ -1,11 +1,15 @@
 const knex = require('knex');
+const config = require('config');
 const knexfile = require('./knexfile');
 
-// TODO: in prod, use dependency injection
-// to create knex instance so db access can be mocked
-// for tests
+// Get the current environment from the NODE_ENV environment variable
+const env = process.env.NODE_ENV || 'development';
 
-// TODO: in prod don't access knexfile.development directly
-// but decide with env vars which config to use
-const db = knex(knexfile.development);
+// Use the correct configuration settings for the current environment
+const dbConfig = knexfile[env];
+
+// Create the Knex instance using the configuration settings
+const db = knex(dbConfig);
+
+
 module.exports = db;
