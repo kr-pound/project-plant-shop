@@ -23,9 +23,14 @@ class SlotService {
     async updateSlot(id, slot) {
         debug(`Slot: get id : ${id}`);
         debug(`Slot: get the body : ${JSON.stringify(slot, null, 2)}`);
-        const { slot_code, slot_state_id, location_id } = slot;
+        const { slot_code, location_id } = slot;
         debug(`Slot: updating..`);
-        return slotDAO.updateSlot(id, slot_code, slot_state_id, location_id);
+        return slotDAO.updateSlot(id, slot_code, location_id);
+    }
+    async updateSlotState(id, slot_state_id) {
+        debug(`Slot: get id : ${id}`);
+        debug(`Slot: updating slot state..`);
+        return slotDAO.updateSlotState(id, slot_state_id);
     }
 
     async softDeleteSlot(id) {

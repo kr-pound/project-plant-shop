@@ -144,6 +144,13 @@ class MachineWithLocationService {
 
     async softDeleteMachineWithLocation(id) {
 
+        // Check if 'plant_amount' is 0
+        const machine = await machineService.getMachine(id);
+        if (machine.plant_amount != 0) {
+            console.log(`Machine ${machine.id} has plant_amount ${machine.plant_amount}.`);
+            return null;
+        }
+
         // Soft Delete 'location'
         const softDeletedLocation = await locationService.softDeleteLocation(id);
         if (!softDeletedLocation) {
@@ -165,6 +172,18 @@ class MachineWithLocationService {
         return { ...softDeletedMachine, ...softDeletedLocation };
     }
     async softDeleteAllMachinesWithLocations() {
+
+        // Check if 'plant_amount' of every machines are 0
+        const machines = await machineService.getAllMachines();
+
+        for (let i = 0; i < machines.length; i++) {
+            const machine = machines[i];
+            if (machine.plant_amount != 0) {
+                // Delete only when 'plant_amount' is 0
+                console.log(`Machine ${machine.id} has plant_amount ${machine.plant_amount}.`);
+                return;
+            }
+        }
 
         // Soft Delete all 'locations'
         const softDeletedLocations = await locationService.softDeleteAllLocations();

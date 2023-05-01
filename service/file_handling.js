@@ -39,6 +39,16 @@ class FileHandlingService {
         debug(`FileHandling: File URL generated successfully: ${fileUrl}`);
         return fileUrl;
     }
+
+    // identify its type by the header
+    decodeBase64(base64String) {
+        const matches = base64String.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
+        if (matches.length !== 3) {
+            throw new Error('Invalid base64 string format');
+        }
+
+        return Buffer.from(matches[2], 'base64');
+    }
 }
 
 module.exports = new FileHandlingService();

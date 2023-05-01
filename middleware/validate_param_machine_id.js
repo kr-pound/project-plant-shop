@@ -33,7 +33,7 @@ const validateParamMachineId = async (req, res, next) => {
     debug(``);
 
     // If everything is valid, add the filter to the request object and call the next middleware
-    req.filter = { location_id: filter.machine_id };
+    req.filter.location_id = filter.machine_id;
     next();
 }
 

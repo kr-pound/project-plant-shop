@@ -8,6 +8,7 @@ exports.up = function(knex) {
         table.uuid('preset_id').references('id').inTable('presets').notNullable();
         table.integer('watering_period').notNullable();
         table.date('next_due').notNullable();
+        table.string('document_name', 50).notNullable();
         table.text('document').notNullable();  // Storing QR code
 
         table.timestamps(true, true);

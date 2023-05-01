@@ -21,6 +21,12 @@ class TypeWithCareController {
             }
             debug(`TypeWithCare: request body is present? : pass`);
 
+            // Assign default document name
+            const { document_name } = req.body;
+            if (!document_name) {
+                req.body.document_name = 'default.pdf';
+            }
+
             // Validate the request body and handle validation errors
             const { error } = typeWithCareModel.validateTypeWithCare(req.body);
             if (error) {
@@ -57,19 +63,9 @@ class TypeWithCareController {
             }
             debug(`TypeWithCare: created successfully? : pass`);
 
-            // Return a simplified response object
-            const response = {
-                id: createdTypeWithCare.id,
-                name: createdTypeWithCare.name,
-                description: createdTypeWithCare.description,
-                category: createdTypeWithCare.category,
-                preset: createdTypeWithCare.preset,
-                watering_period: createdTypeWithCare.watering_period,
-                next_due: createdTypeWithCare.next_due,
-                document: createdTypeWithCare.document
-            };
-            res.status(201).json(response);
-            debug(`\nTypeWithCare: response back to client : ${JSON.stringify(response, null, 2)}`);
+            // Return the response object
+            res.status(201).json(createdTypeWithCare);
+            debug(`\nTypeWithCare: response back to client : ${JSON.stringify(createdTypeWithCare, null, 2)}`);
 
         } catch (err) {
             debug(`--> TypeWithCare: Exception Caught`);
@@ -87,11 +83,11 @@ class TypeWithCareController {
             const validColumns = ['name'];
 
             // Default column (sortby): 'name'
-            const column = validColumns.includes(sortby) ? sortby : 'name';
+            const field = validColumns.includes(sortby) ? sortby : 'name';
 
             // Default order: 'asc'
             const order = req.query.order === 'desc' ? 'desc' : 'asc';
-            const sort = { column, order };
+            const sort = { field, order };
             debug(`TypeWithCare: sorting : ${JSON.stringify(sort, null, 2)}`);
 
             // Use the filter from the request object (get from Middleware)
@@ -104,7 +100,7 @@ class TypeWithCareController {
             debug(`TypeWithCare: get successfully? : pass`);
 
             res.json(typesWithCares);
-            debug(`\TypeWithCare: response back to client : ${JSON.stringify(typesWithCares, null, 2)}`);
+            debug(`\nTypeWithCare: response back to client : ${JSON.stringify(typesWithCares, null, 2)}`);
 
         } catch (err) {
             debug(`--> TypeWithCare: Exception Caught`);
@@ -117,6 +113,7 @@ class TypeWithCareController {
         try {
             debug(`=== GET Request ===`);
             debug(`TypeWithCare: get the request params : ${JSON.stringify(req.params, null, 2)}`);
+
             // Check if the request parameter is a valid UUID
             if (!uuid.validate(req.params.id)) {
                 debug(`--> TypeWithCare: uuid validation : failed`);
@@ -153,6 +150,12 @@ class TypeWithCareController {
                 return res.status(400).json({ exception: 'Request body is missing or empty.' });
             }
             debug(`TypeWithCare: request body is present? : pass`);
+
+            // Assign default document name
+            const { document_name } = req.body;
+            if (!document_name) {
+                req.body.document_name = 'default.pdf';
+            }
 
             // Validate the request body and handle validation errors
             const { error } = typeWithCareModel.validateTypeWithCare(req.body);
@@ -205,19 +208,9 @@ class TypeWithCareController {
             }
             debug(`TypeWithCare: updated successfully? : pass`);
 
-            // Return a simplified response object
-            const response = {
-                id: updatedTypeWithCare.id,
-                name: updatedTypeWithCare.name,
-                description: updatedTypeWithCare.description,
-                category: updatedTypeWithCare.category,
-                preset: updatedTypeWithCare.preset,
-                watering_period: updatedTypeWithCare.watering_period,
-                next_due: updatedTypeWithCare.next_due,
-                document: updatedTypeWithCare.document
-            };
-            res.status(200).json(response);
-            debug(`\nTypeWithCare: response back to client : ${JSON.stringify(response, null, 2)}`);
+            // Return the response object
+            res.status(200).json(updatedTypeWithCare);
+            debug(`\nTypeWithCare: response back to client : ${JSON.stringify(updatedTypeWithCare, null, 2)}`);
 
         } catch (err) {
             debug(`--> TypeWithCare: Exception Caught`);
@@ -253,19 +246,9 @@ class TypeWithCareController {
             }
             debug(`TypeWithCare: deleted successfully? : pass`);
 
-            // Return a simplified response object
-            const response = {
-                id: deletedTypeWithCare.id,
-                name: deletedTypeWithCare.name,
-                description: deletedTypeWithCare.description,
-                category: deletedTypeWithCare.category,
-                preset: deletedTypeWithCare.preset,
-                watering_period: deletedTypeWithCare.watering_period,
-                next_due: deletedTypeWithCare.next_due,
-                document: deletedTypeWithCare.document
-            };
-            res.status(200).json(response);
-            debug(`\nTypeWithCare: response back to client : ${JSON.stringify(response, null, 2)}`);
+            // Return the response object
+            res.status(200).json(deletedTypeWithCare);
+            debug(`\nTypeWithCare: response back to client : ${JSON.stringify(deletedTypeWithCare, null, 2)}`);
 
         } catch (err) {
             debug(`--> TypeWithCare: Exception Caught`);

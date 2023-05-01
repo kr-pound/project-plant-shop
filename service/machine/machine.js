@@ -27,6 +27,11 @@ class MachineService {
         debug(`Machine: updating..`);
         return machineDAO.updateMachine(id, capacity);
     }
+    async updatePlantAmount(id, plant_amount) {
+        debug(`Machine: get id : ${id}`);
+        debug(`Slot: updating plant amount..`);
+        return machineDAO.updatePlantAmount(id, plant_amount);
+    }
 
     async softDeleteMachine(id) {
         debug(`Machine: get id : ${id}`);

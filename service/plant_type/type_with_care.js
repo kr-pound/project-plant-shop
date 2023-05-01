@@ -12,7 +12,7 @@ const debug = require('debug')('app:service');
 class TypeWithCareService {
     async createTypeWithCare(typeWithCare) {
 
-        const { name, description, category_id, preset_id, watering_period, document } = typeWithCare;
+        const { name, description, category_id, preset_id, watering_period, document_name, document } = typeWithCare;
 
         // Calculate 'next_due': based on the current date and watering period
         const currentDate = new Date();
@@ -26,7 +26,7 @@ class TypeWithCareService {
         debug(`TypeWithCare: passing to the database..`);
 
         // Create 'caring_detail'
-        const caring_detail = { preset_id, watering_period, next_due: nextDueDate, document: fileUrl };
+        const caring_detail = { preset_id, watering_period, next_due: nextDueDate, document_name, document: fileUrl };
 
         const createdCaringDetail = await caringDetailService.createCaringDetail(caring_detail);
         if (!createdCaringDetail) {
@@ -58,6 +58,7 @@ class TypeWithCareService {
             preset: combinedPreset,
             watering_period: createdCaringDetail.watering_period,
             next_due: createdCaringDetail.next_due,
+            document_name: createdCaringDetail.document_name,
             document: createdCaringDetail.document
         };
     }
@@ -68,6 +69,8 @@ class TypeWithCareService {
 
         const caring_details = await caringDetailService.getAllCaringDetails();
         const plant_types = await plantTypeService.getAllPlantTypes();
+
+        debug(`TypeWithCare: fetching 'category' and 'preset' data..`);
 
         // Fetch all 'categories' and 'combined_presets'
         const allCategories = await categoryService.getAllCategories();
@@ -100,6 +103,7 @@ class TypeWithCareService {
                 preset: combinedPreset,
                 watering_period: caring_detail.watering_period,
                 next_due: caring_detail.next_due,
+                document_name: caring_detail.document_name,
                 document: caring_detail.document
             };
         });
@@ -139,6 +143,8 @@ class TypeWithCareService {
             return null;
         }
 
+        debug(`TypeWithCare: fetching 'category' and 'preset' data..`);
+
         // Fetch the corresponding 'category' and 'preset'
         const category = await categoryService.getCategory(plant_type.category_id);
         const combinedPreset = await combinedPresetService.getCombinedPreset(caring_detail.preset_id);
@@ -152,13 +158,14 @@ class TypeWithCareService {
             preset: combinedPreset,
             watering_period: caring_detail.watering_period,
             next_due: caring_detail.next_due,
+            document_name: caring_detail.document_name,
             document: caring_detail.document
         };
     }
 
     async updateTypeWithCare(id, typeWithCare) {
 
-        const { name, description, category_id, preset_id, watering_period, document } = typeWithCare;
+        const { name, description, category_id, preset_id, watering_period, document_name, document } = typeWithCare;
 
         // Calculate 'next_due': based on the current date and watering period
         const currentDate = new Date();
@@ -174,7 +181,7 @@ class TypeWithCareService {
             debug(`TypeWithCare: passing to the database..`);
 
             // Update 'caring_detail' (with document)
-            caring_detail = { preset_id, watering_period, next_due: nextDueDate, document: fileUrl };
+            caring_detail = { preset_id, watering_period, next_due: nextDueDate, document_name, document: fileUrl };
         } else {
             // Update 'caring_detail' (no document)
             caring_detail = { preset_id, watering_period, next_due: nextDueDate };
@@ -193,6 +200,8 @@ class TypeWithCareService {
             return null;
         }
 
+        debug(`TypeWithCare: fetching 'category' and 'preset' data..`);
+
         // Fetch the corresponding 'category' and 'preset'
         const category = await categoryService.getCategory(category_id);
         const combinedPreset = await combinedPresetService.getCombinedPreset(preset_id);
@@ -206,6 +215,7 @@ class TypeWithCareService {
             preset: combinedPreset,
             watering_period: updatedCaringDetail.watering_period,
             next_due: updatedCaringDetail.next_due,
+            document_name: updatedCaringDetail.document_name,
             document: updatedCaringDetail.document
         };
     }
@@ -224,6 +234,8 @@ class TypeWithCareService {
             return null;
         }
 
+        debug(`TypeWithCare: fetching 'category' and 'preset' data..`);
+
         // Fetch the corresponding 'category' and 'preset'
         const category = await categoryService.getCategory(softDeletedPlantType.category_id);
         const combinedPreset = await combinedPresetService.getCombinedPreset(softDeletedCaringDetail.preset_id);
@@ -237,6 +249,7 @@ class TypeWithCareService {
             preset: combinedPreset,
             watering_period: softDeletedCaringDetail.watering_period,
             next_due: softDeletedCaringDetail.next_due,
+            document_name: softDeletedCaringDetail.document_name,
             document: softDeletedCaringDetail.document
         };
     }
@@ -253,6 +266,8 @@ class TypeWithCareService {
         if (!softDeletedPlantTypes) {
             return null;
         }
+
+        debug(`TypeWithCare: fetching 'category' and 'preset' data..`);
 
         // Fetch all 'categories' and 'combined_presets'
         const allCategories = await categoryService.getAllCategories();
@@ -271,6 +286,7 @@ class TypeWithCareService {
                 preset: combinedPreset,
                 watering_period: caring_detail.watering_period,
                 next_due: caring_detail.next_due,
+                document_name: caring_detail.document_name,
                 document: caring_detail.document
             };
         });

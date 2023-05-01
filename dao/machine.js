@@ -58,6 +58,21 @@ class MachineDAO {
         debug(`Machine: updated? : pass`);
         return updatedMachine;
     }
+    async updatePlantAmount(id, plant_amount) {
+        const [updatedMachine] = await db('machines')
+            .where('id', id)
+            .update({
+                plant_amount, updated_at: db.fn.now()
+            })
+            .returning('*');
+
+        if (!updatedMachine) {
+            debug(`--> Machine: updated? : failed`);
+            return;
+        }
+        debug(`Machine: updated? : pass`);
+        return updatedMachine;
+    }
 
     async softDeleteMachine(id) {
         const [softDeletedMachine] = await db('machines')

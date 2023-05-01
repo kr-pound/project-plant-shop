@@ -42,11 +42,11 @@ class SlotDAO {
         return slot;
     }
 
-    async updateSlot(id, slot_code, slot_state_id, location_id) {
+    async updateSlot(id, slot_code, location_id) {
         const [updatedSlot] = await db('slots')
             .where('id', id)
             .update({
-                slot_code, slot_state_id, location_id
+                slot_code, location_id
             })
             .returning('*');
 
@@ -56,6 +56,21 @@ class SlotDAO {
         }
         debug(`Slot: updated? : pass`);
         return updatedMachine;
+    }
+    async updateSlotState(id, slot_state_id) {
+        const [updatedSlot] = await db('slots')
+            .where('id', id)
+            .update({
+                slot_state_id
+            })
+            .returning('*');
+
+        if (!updatedSlot) {
+            debug(`--> Slot: updated? : failed`);
+            return;
+        }
+        debug(`Slot: updated? : pass`);
+        return updatedSlot;
     }
 
     async softDeleteSlot(id) {
