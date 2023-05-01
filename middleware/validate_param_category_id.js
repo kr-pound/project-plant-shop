@@ -11,13 +11,13 @@ const validateParamCategoryId = async (req, res, next) => {
 
     // Check for missing or empty filter
     if (!filter.category_id) {
-        debug(`Validator (staff_id): filter 'staff_id' is present? : pass (null)`);
+        debug(`Validator (category_id): filter 'category_id' is present? : pass (null)`);
         next();
         return;
     }
-    debug(`Validator (staff_id): filter 'staff_id' is present? : pass`);
+    debug(`Validator (category_id): filter 'category_id' is present? : pass`);
 
-    // Check if the 'staff_id' is a valid UUID
+    // Check if the 'category_id' is a valid UUID
     if (!uuid.validate(filter.category_id)) {
         debug(`--> Validator (category_id): filter 'category_id' uuid validation : failed`);
         return res.status(400).json({ exception: "Paramer 'category_id' is an invalid ID format." });
