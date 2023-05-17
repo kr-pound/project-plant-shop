@@ -9,7 +9,6 @@
             "password": "18521852",
             "url": "",
             "ssl": false
-
         },
         "pool": {
             "min": 2,
@@ -18,5 +17,19 @@
         "migrations": {
             "tableName": "knex_migrations"
         }
+    },
+    "mqtt": {
+        "connection": {
+            "host": "localhost",
+            "port": 1883,
+            "username": "",
+            "password": ""
+        }
+    },
+    "webhook": {
+        "client_base_url": "http://localhost:5000"
+    },
+    "http_signal": {
+        "bank_base_url": "http://localhost:7000"
     }
 }

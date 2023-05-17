@@ -1,6 +1,9 @@
 // Load environment variables from .env file
 require('dotenv').config();
 
+// MQTT connection controller
+require('./controller/mqtt_connection');
+
 // Express Module
 const express = require('express');
 const app = express();
@@ -16,6 +19,10 @@ const machines = require('./routes/machine');
 const slots = require('./routes/slot')
 const plant_types = require('./routes/plant_type');
 const plants = require('./routes/plant');
+const plant_management = require('./routes/plant_management');
+const http_to_mqtt = require('./routes/http_to_mqtt');
+const bank = require('./routes/bank');
+const webhook_listener = require('./routes/webhook_listener');
 
 // 3rd-party Middleware
 const morgan = require('morgan');
@@ -45,6 +52,11 @@ app.use('/api/machines', machines);
 app.use('/api/slots', slots);
 app.use('/api/plant_types', plant_types);
 app.use('/api/plants', plants);
+app.use('/api/request_change_plant_state', plant_management);
+app.use('/api/signal', http_to_mqtt);
+
+app.use('/webhook/payment_status', webhook_listener);
+app.use('/api/payment_detail', bank);
 
 // PORT
 // 'process.env.PORT' can be set using `set PORT=5000` in the cmd

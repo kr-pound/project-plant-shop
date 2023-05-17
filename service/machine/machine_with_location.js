@@ -83,10 +83,13 @@ class MachineWithLocationService {
             const field = sort.field || 'name';
             const order = sort.order || 'asc';
 
-            if (a[field] < b[field]) {
+            const valueA = a[field].toLowerCase();
+            const valueB = b[field].toLowerCase();
+
+            if (valueA < valueB) {
                 return order === 'asc' ? -1 : 1;
             }
-            if (a[field] > b[field]) {
+            if (valueA > valueB) {
                 return order === 'asc' ? 1 : -1;
             }
             return 0;

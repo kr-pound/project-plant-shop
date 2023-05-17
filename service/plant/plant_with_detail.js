@@ -175,33 +175,33 @@ class PlantWithDetailService {
             const order = sort.order || 'asc';
 
             group.sort((a, b) => {
-            let aValue, bValue;
-            switch (field) {
-                case 'name':
-                aValue = a.plant_type.name;
-                bValue = b.plant_type.name;
-                break;
-                case 'price':
-                aValue = a.price;
-                bValue = b.price;
-                break;
-                case 'date':
-                aValue = a.created_at;
-                bValue = b.created_at;
-                break;
-                default:
-                // If an invalid field is specified, default to sorting by slot_code
-                aValue = a.slot.slot_code;
-                bValue = b.slot.slot_code;
-            }
+                let aValue, bValue;
+                switch (field) {
+                    case 'name':
+                        aValue = a.plant_type.name.toLowerCase();
+                        bValue = b.plant_type.name.toLowerCase();
+                        break;
+                    case 'price':
+                        aValue = a.price;
+                        bValue = b.price;
+                        break;
+                    case 'date':
+                        aValue = a.created_at;
+                        bValue = b.created_at;
+                        break;
+                    default:
+                        // If an invalid field is specified, default to sorting by slot_code
+                        aValue = a.slot.slot_code;
+                        bValue = b.slot.slot_code;
+                }
 
-            if (aValue < bValue) {
-                return order === 'asc' ? -1 : 1;
-            }
-            if (aValue > bValue) {
-                return order === 'asc' ? 1 : -1;
-            }
-            return 0;
+                if (aValue < bValue) {
+                    return order === 'asc' ? -1 : 1;
+                }
+                if (aValue > bValue) {
+                    return order === 'asc' ? 1 : -1;
+                }
+                return 0;
             });
         }
 

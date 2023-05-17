@@ -28,8 +28,32 @@ class SlotWithStateController {
             console.error(err);
             res.status(500).json({ exception: err.message });
         }
-
     }
+
+    async getAllEmptySlots(req, res) {
+        try {
+            debug(`=== GET Request ===`);
+            debug(`SlotWithState: get the request query : ${JSON.stringify(req.query, null, 2)}`);
+
+            // Use the filter from the request object (get from Middleware)
+            // Use the search keyword from the query
+            const slotsWithStates = await slotWithStateService.getAllEmptySlots(req.filter);
+            if (!slotsWithStates) {
+                debug(`--> SlotWithState: get successfully? : failed`);
+                return res.status(404).json({ exception: 'Unable to get SlotsWithStates.' });
+            }
+            debug(`SlotWithState: get successfully? : pass`);
+
+            res.json(slotsWithStates);
+            debug(`\nSlotWithState: response back to client : ${JSON.stringify(slotsWithStates, null, 2)}`);
+
+        } catch (err) {
+            debug(`--> SlotWithState: Exception Caught`);
+            console.error(err);
+            res.status(500).json({ exception: err.message });
+        }
+    }
+
     async getSlotWithState(req, res) {
         try {
             debug(`=== GET Request ===`);

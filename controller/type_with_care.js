@@ -1,6 +1,7 @@
 const typeWithCareService = require('../service/plant_type/type_with_care');
 const categoryService = require('../service/plant_type/category');
 const presetService = require('../service/preset/preset');
+const plantTypeService = require('../service/plant_type/plant_type');
 
 // Validation Module
 const typeWithCareModel = require('../model/type_with_care');
@@ -107,8 +108,43 @@ class TypeWithCareController {
             console.error(err);
             res.status(500).json({ exception: err.message });
         }
-
     }
+
+    async getAllPlantTypes(req, res) {
+        try {
+            debug(`=== GET Request ===`);
+            debug(`TypeWithCare: get the request query : ${JSON.stringify(req.query, null, 2)}`);
+
+            const sortby = req.query.sortby;
+            const validColumns = ['name'];
+
+            // Default column (sortby): 'name'
+            const field = validColumns.includes(sortby) ? sortby : 'name';
+
+            // Default order: 'asc'
+            const order = req.query.order === 'desc' ? 'desc' : 'asc';
+            const sort = { field, order };
+            debug(`TypeWithCare: sorting : ${JSON.stringify(sort, null, 2)}`);
+
+            // Use the filter from the request object (get from Middleware)
+            // Use the search keyword from the query
+            const typesWithCares = await typeWithCareService.getAllPlantTypes(req.filter, sort);
+            if (!typesWithCares) {
+                debug(`--> TypeWithCare: get successfully? : failed`);
+                return res.status(404).json({ exception: 'Unable to get TypesWithCares.' });
+            }
+            debug(`TypeWithCare: get successfully? : pass`);
+
+            res.json(typesWithCares);
+            debug(`\nTypeWithCare: response back to client : ${JSON.stringify(typesWithCares, null, 2)}`);
+
+        } catch (err) {
+            debug(`--> TypeWithCare: Exception Caught`);
+            console.error(err);
+            res.status(500).json({ exception: err.message });
+        }
+    }
+
     async getTypeWithCare(req, res) {
         try {
             debug(`=== GET Request ===`);
@@ -144,6 +180,7 @@ class TypeWithCareController {
             debug(`=== PUT Request ===`);
             debug(`TypeWithCare: get the request params : ${JSON.stringify(req.params, null, 2)}`);
             debug(`TypeWithCare: get the request body : ${JSON.stringify(req.body, null, 2)}`);
+
             // Check for missing or empty request body
             if (!req.body || Object.keys(req.body).length === 0) {
                 debug(`--> TypeWithCare: request body is present? : failed`);

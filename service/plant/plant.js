@@ -27,6 +27,11 @@ class PlantService {
         debug(`Plant: updating..`);
         return plantDAO.updatePlant(id, plant_type_id, slot_id, location_id);
     }
+    async updatePlantState(id, plant_state_id) {
+        debug(`Plant: get id : ${id}`);
+        debug(`Plant: updating plant state..`);
+        return plantDAO.updatePlantState(id, plant_state_id);
+    }
 
     async softDeletePlant(id) {
         debug(`Plant: get id : ${id}`);

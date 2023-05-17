@@ -118,10 +118,13 @@ class TypeWithCareService {
             const field = sort.field || 'name';
             const order = sort.order || 'asc';
 
-            if (a[field] < b[field]) {
+            const valueA = a[field].toLowerCase();
+            const valueB = b[field].toLowerCase();
+
+            if (valueA < valueB) {
                 return order === 'asc' ? -1 : 1;
             }
-            if (a[field] > b[field]) {
+            if (valueA > valueB) {
                 return order === 'asc' ? 1 : -1;
             }
             return 0;
@@ -129,6 +132,34 @@ class TypeWithCareService {
         debug(`TypeWithCare: sorted? : pass`);
         return typesWithCares;
     }
+
+    async getAllPlantTypes(sort = { field: 'name', order: 'asc' }) {
+        debug(`TypeWithCare: get sort : ${JSON.stringify(sort, null, 2)}`);
+
+        const plant_types = await plantTypeService.getAllPlantTypes();
+
+        debug(`TypeWithCare: sorting..`);
+
+        // Sort the results based on the specified sort field and order
+        plant_types.sort((a, b) => {
+            const field = sort.field || 'name';
+            const order = sort.order || 'asc';
+
+            const valueA = a[field].toLowerCase();
+            const valueB = b[field].toLowerCase();
+
+            if (valueA < valueB) {
+                return order === 'asc' ? -1 : 1;
+            }
+            if (valueA > valueB) {
+                return order === 'asc' ? 1 : -1;
+            }
+            return 0;
+        });
+        debug(`TypeWithCare: sorted? : pass`);
+        return plant_types;
+    }
+
     async getTypeWithCare(id) {
 
         // Read 'caring_detail'

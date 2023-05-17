@@ -9,7 +9,6 @@
             "password": "18521852",
             "url": "",
             "ssl": false
-
         },
         "pool": {
             "min": 2,

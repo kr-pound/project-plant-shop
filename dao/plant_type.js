@@ -47,7 +47,7 @@ class PlantTypeDAO {
         const [updatedPlantType] = await db('plant_types')
             .where('id', id)
             .update({
-                name, description, category_id
+                name, description, category_id, updated_at: db.fn.now()
             })
             .returning('*');
 

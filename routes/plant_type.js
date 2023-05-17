@@ -9,6 +9,8 @@ const validateParamCategoryId = require('../middleware/validate_param_category_i
 router.post('/', typeWithCareController.createTypeWithCare);
 
 router.get('/', validateParamCategoryId, typeWithCareController.getAllTypesWithCares);
+router.get('/available_lists', typeWithCareController.getAllPlantTypes);
+
 router.get('/:id', typeWithCareController.getTypeWithCare);
 
 router.put('/:id', typeWithCareController.updateTypeWithCare);

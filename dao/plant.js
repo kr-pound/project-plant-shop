@@ -48,7 +48,22 @@ class PlantDAO {
         const [updatedPlant] = await db('plants')
             .where('id', id)
             .update({
-                plant_type_id, slot_id, location_id
+                plant_type_id, slot_id, location_id, updated_at: db.fn.now()
+            })
+            .returning('*');
+
+        if (!updatedPlant) {
+            debug(`--> Plant: updated? : failed`);
+            return;
+        }
+        debug(`Plant: updated? : pass`);
+        return updatedPlant;
+    }
+    async updatePlantState(id, plant_state_id) {
+        const [updatedPlant] = await db('plants')
+            .where('id', id)
+            .update({
+                plant_state_id, updated_at: db.fn.now()
             })
             .returning('*');
 

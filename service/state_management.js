@@ -10,7 +10,6 @@ class StateManagementService {
     async getSlotState(id) {
         return slotService.getSlot(id);
     }
-
     async setSlotState(id, slot_state_id) {
         return slotService.updateSlotState(id, slot_state_id);
     }
@@ -34,6 +33,14 @@ class StateManagementService {
             return null;
         }
         return updatedMachine;
+    }
+
+    // === Plant ===
+    async getPlantState(id) {
+        return plantService.getPlant(id);
+    }
+    async setPlantState(id, plant_state_id) {
+        return plantService.updatePlantState(id, plant_state_id);
     }
 
 }
