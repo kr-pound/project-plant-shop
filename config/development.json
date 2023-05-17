@@ -31,5 +31,8 @@
     },
     "http_signal": {
         "bank_base_url": "http://localhost:7000"
+    },
+    "localhost": {
+        "localhost_base_url": "http://localhost:3000"
     }
 }

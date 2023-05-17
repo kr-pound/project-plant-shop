@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+const config = require('config');
 const debug = require('debug')('app:service');
 
 class FileHandlingService {
@@ -20,7 +21,8 @@ class FileHandlingService {
         });
 
         const fileUrl = this.generateFileUrl(fileName);
-        return fileUrl;
+        const baseUrl = config.get('localhost.localhost_base_url');
+        return  baseUrl + fileUrl;
     }
 
     generateFileName(baseName, fileExtension) {
