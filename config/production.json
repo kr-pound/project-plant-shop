@@ -20,10 +20,10 @@
     },
     "mqtt": {
         "connection": {
-            "host": "broker.hivemq.com",
-            "port": 1883,
-            "username": "",
-            "password": ""
+            "host": "0.tcp.ap.ngrok.io",
+            "port": 10931,
+            "username": "myhome",
+            "password": "myraspi"
         }
     },
     "webhook": {
