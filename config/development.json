@@ -20,19 +20,19 @@
     },
     "mqtt": {
         "connection": {
-            "host": "localhost",
+            "host": "broker.hivemq.com",
             "port": 1883,
             "username": "",
             "password": ""
         }
     },
     "webhook": {
-        "client_base_url": "http://localhost:5000"
+        "client_base_url": "http://localhost:3000"
     },
     "http_signal": {
         "bank_base_url": "http://localhost:7000"
     },
     "localhost": {
-        "localhost_base_url": "http://localhost:3000"
+        "localhost_base_url": "http://localhost:3002"
     }
 }
