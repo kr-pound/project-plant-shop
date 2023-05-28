@@ -21,7 +21,7 @@
     "mqtt": {
         "connection": {
             "host": "0.tcp.ap.ngrok.io",
-            "port": 10931,
+            "port": 15547,
             "username": "myhome",
             "password": "myraspi"
         }
