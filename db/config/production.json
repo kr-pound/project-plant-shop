@@ -3,11 +3,11 @@
     "database": {
         "client": "postgresql",
         "connection": {
-            "host": "dpg-ch0legpjvhtkjjqfourg-a",
-            "database": "project_plant_shop",
-            "user": "project_plant_shop_user",
-            "password": "SW40St5afFYm8FAN2EsJUzHhbulyJTX4",
-            "url": "postgres://project_plant_shop_user:SW40St5afFYm8FAN2EsJUzHhbulyJTX4@dpg-ch0legpjvhtkjjqfourg-a.singapore-postgres.render.com/project_plant_shop",
+            "host": "your_production_database_host",
+            "database": "your_production_database_name",
+            "user": "your_production_database_user",
+            "password": "your_production_database_password",
+            "url": "your_production_database_full_url",
             "ssl": true
         },
         "pool": {

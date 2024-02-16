@@ -4,9 +4,9 @@
         "client": "postgresql",
         "connection": {
             "host": "localhost",
-            "database": "project-plant-shop",
-            "user": "postgres",
-            "password": "18521852",
+            "database": "your_development_database_name",
+            "user": "your_database_user",
+            "password": "your_database_password",
             "url": "",
             "ssl": false
         },
