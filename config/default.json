@@ -1,0 +1,11 @@
+{
+    "name": "Automatic Plant Shop",
+    "mqtt": {
+        "connection": {
+            "host": "192.168.84.188",
+            "port": 1883,
+            "username": "myhome",
+            "password": "myraspi"
+        }
+    }
+}

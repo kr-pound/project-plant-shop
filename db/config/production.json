@@ -1,0 +1,21 @@
+{
+    "name": "Automatic Plant Shop - Production",
+    "database": {
+        "client": "postgresql",
+        "connection": {
+            "host": "dpg-ch0legpjvhtkjjqfourg-a",
+            "database": "project_plant_shop",
+            "user": "project_plant_shop_user",
+            "password": "SW40St5afFYm8FAN2EsJUzHhbulyJTX4",
+            "url": "postgres://project_plant_shop_user:SW40St5afFYm8FAN2EsJUzHhbulyJTX4@dpg-ch0legpjvhtkjjqfourg-a.singapore-postgres.render.com/project_plant_shop",
+            "ssl": true
+        },
+        "pool": {
+            "min": 2,
+            "max": 10
+        },
+        "migrations": {
+            "tableName": "knex_migrations"
+        }
+    }
+}
