@@ -3,11 +3,11 @@
     "database": {
         "client": "postgresql",
         "connection": {
-            "host": "your_production_database_host",
-            "database": "your_production_database_name",
-            "user": "your_production_database_user",
-            "password": "your_production_database_password",
-            "url": "your_production_database_full_url",
+            "host": "{ PRODUCTION_DATABASE_HOST }",
+            "database": "{ PRODUCTION_DATABASE_NAME }",
+            "user": "{ PRODUCTION_DATABASE_USER }",
+            "password": "{ PRODUCTION_DATABASE_PASSWORD }",
+            "url": "{ PRODUCTION_DATABASE_FULL_URL }",
             "ssl": true
         },
         "pool": {
