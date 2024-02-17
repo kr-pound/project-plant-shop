@@ -4,9 +4,9 @@
         "client": "postgresql",
         "connection": {
             "host": "localhost",
-            "database": "{ DEVELOPMENT_DATABASE_NAME }",
-            "user": "{ DATABASE_USER }",
-            "password": "{ DATABASE_PASSWORD }",
+            "database": "{{ DEVELOPMENT_DATABASE_NAME }}",
+            "user": "{{ DATABASE_USER }}",
+            "password": "{{ DATABASE_PASSWORD }}",
             "url": "",
             "ssl": false
         },

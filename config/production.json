@@ -3,11 +3,11 @@
     "database": {
         "client": "postgresql",
         "connection": {
-            "host": "dpg-ch0legpjvhtkjjqfourg-a",
-            "database": "project_plant_shop",
-            "user": "project_plant_shop_user",
-            "password": "SW40St5afFYm8FAN2EsJUzHhbulyJTX4",
-            "url": "postgres://project_plant_shop_user:SW40St5afFYm8FAN2EsJUzHhbulyJTX4@dpg-ch0legpjvhtkjjqfourg-a.singapore-postgres.render.com/project_plant_shop",
+            "host": "{{ PRODUCTION_DATABASE_HOST }}",
+            "database": "{{ PRODUCTION_DATABASE_NAME }}",
+            "user": "{{ PRODUCTION_DATABASE_USER }}",
+            "password": "{{ PRODUCTION_DATABASE_PASSWORD }}",
+            "url": "{{ PRODUCTION_DATABASE_FULL_URL }}",
             "ssl": true
         },
         "pool": {
@@ -20,19 +20,19 @@
     },
     "mqtt": {
         "connection": {
-            "host": "0.tcp.ap.ngrok.io",
-            "port": 10065,
-            "username": "myhome",
-            "password": "myraspi"
+            "host": "{{ MQTT_BROKER_HOST_PRODUCTION }}",
+            "port": 1883,
+            "username": "{{ MQTT_USERNAME_PRODUCTION }}",
+            "password": "{{ MQTT_PASSWORD_PRODUCTION }}"
         }
     },
     "webhook": {
-        "client_base_url": "http://localhost:5000"
+        "client_base_url": "{{ WEBHOOK_CLIENT_BASE_URL_PRODUCTION }}"
     },
     "http_signal": {
-        "bank_base_url": "https://project-plant-shop-bank.onrender.com"
+        "bank_base_url": "{{ BANK_BASE_URL_PRODUCTION }}"
     },
     "localhost": {
-        "localhost_base_url": "https://project-plant-shop.onrender.com"
+        "localhost_base_url": "{{ LOCALHOST_BASE_URL_PRODUCTION }}"
     }
 }

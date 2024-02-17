@@ -4,9 +4,9 @@
         "client": "postgresql",
         "connection": {
             "host": "localhost",
-            "database": "project-plant-shop",
-            "user": "postgres",
-            "password": "18521852",
+            "database": "{{ DEVELOPMENT_DATABASE_NAME }}",
+            "user": "{{ DATABASE_USER }}",
+            "password": "{{ DATABASE_PASSWORD }}",
             "url": "",
             "ssl": false
         },
@@ -20,10 +20,10 @@
     },
     "mqtt": {
         "connection": {
-            "host": "broker.hivemq.com",
+            "host": "{{ MQTT_BROKER_HOST }}",
             "port": 1883,
-            "username": "",
-            "password": ""
+            "username": "{{ MQTT_USERNAME }}",
+            "password": "{{ MQTT_PASSWORD }}"
         }
     },
     "webhook": {

@@ -59,6 +59,6 @@ app.use('/webhook/payment_status', webhook_listener);
 app.use('/api/payment_detail', bank);
 
 // PORT
-// 'process.env.PORT' can be set using `set PORT=5000` in the cmd
+// 'process.env.PORT' can be set using `set PORT={{ PORT_NUMBER }}` in the cmd
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
