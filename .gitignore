@@ -1,5 +1,9 @@
-/config
+/config/default.json
+/config/development.json
+/config/production.json
 
-/db/config
+/db/config/default.json
+/db/config/development.json
+/db/config/production.json
 
 node_modules

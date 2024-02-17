@@ -1,0 +1,38 @@
+{
+    "name": "Automatic Plant Shop - Production",
+    "database": {
+        "client": "postgresql",
+        "connection": {
+            "host": "{{ PRODUCTION_DATABASE_HOST }}",
+            "database": "{{ PRODUCTION_DATABASE_NAME }}",
+            "user": "{{ PRODUCTION_DATABASE_USER }}",
+            "password": "{{ PRODUCTION_DATABASE_PASSWORD }}",
+            "url": "{{ PRODUCTION_DATABASE_FULL_URL }}",
+            "ssl": true
+        },
+        "pool": {
+            "min": 2,
+            "max": 10
+        },
+        "migrations": {
+            "tableName": "knex_migrations"
+        }
+    },
+    "mqtt": {
+        "connection": {
+            "host": "{{ MQTT_BROKER_HOST_PRODUCTION }}",
+            "port": 1883,
+            "username": "{{ MQTT_USERNAME_PRODUCTION }}",
+            "password": "{{ MQTT_PASSWORD_PRODUCTION }}"
+        }
+    },
+    "webhook": {
+        "client_base_url": "{{ WEBHOOK_CLIENT_BASE_URL_PRODUCTION }}"
+    },
+    "http_signal": {
+        "bank_base_url": "{{ BANK_BASE_URL_PRODUCTION }}"
+    },
+    "localhost": {
+        "localhost_base_url": "{{ LOCALHOST_BASE_URL_PRODUCTION }}"
+    }
+}

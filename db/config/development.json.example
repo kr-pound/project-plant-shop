@@ -1,0 +1,21 @@
+{
+    "name": "Automatic Plant Shop - Development",
+    "database": {
+        "client": "postgresql",
+        "connection": {
+            "host": "localhost",
+            "database": "{{ DEVELOPMENT_DATABASE_NAME }}",
+            "user": "{{ DATABASE_USER }}",
+            "password": "{{ DATABASE_PASSWORD }}",
+            "url": "",
+            "ssl": false
+        },
+        "pool": {
+            "min": 2,
+            "max": 10
+        },
+        "migrations": {
+            "tableName": "knex_migrations"
+        }
+    }
+}
