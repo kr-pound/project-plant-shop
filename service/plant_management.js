@@ -114,7 +114,7 @@ class PlantManagementService {
         const updatedData = await stateManagementService.setPlantState(plant_id, plant_state_id);
         if (!updatedData) {
             debug(`--> PlantManagement: updating plant state : failed`);
-            debug(`--> PlantManagement: cannot update plant state to be ${updatedData.plant_state_id}`);
+            debug(`--> PlantManagement: cannot update plant state to be ${plant_state_id}`);
             return null;
         }
         debug(`PlantManagement: updated plant state to be ${updatedData.plant_state_id}`);
